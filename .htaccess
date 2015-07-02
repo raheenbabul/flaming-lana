@@ -1,0 +1,20 @@
+
+AddDefaultCharset UTF-8
+
+#Rules for search pages
+#RewriteRule ^search/(.*)/(.*)/?$ /crc/includes/php/search/search.php?query=$1&start=$2&search=1 [NC,L,QSA]
+
+RewriteBase /
+RewriteCond %{THE_REQUEST} ^GET\ /wp-admin/
+RewriteRule ^wp-admin/(.*)$ admin/$1 [R,L]
+RewriteRule ^admin(.*)$ wp-admin$1
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c> 
+RewriteEngine On
+RewriteBase /asplundh/
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /asplundh/index.php [L]
+</IfModule>
